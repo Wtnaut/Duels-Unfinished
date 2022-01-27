@@ -1,0 +1,55 @@
+name: DuelsPlugin
+version: 1.0.0
+main: org.duels.DuelsPlugin
+api-version: 1.17
+description: TBD LATER
+author: Wtnaut
+prefix: DUELS
+depend: [CombatLogX]
+
+commands:
+   duel:
+       description: basic duel command
+       usage: /duel
+       permission: duel.user
+       
+   dueltoggle:
+       description: toggles duels off and on
+       usage: /dueltoggle
+       permission: duel.admin
+        
+   elochange:
+       description: modifies a user's elo
+       usage: /elochange [user] [amount]
+       permission: duel.moderator
+       
+   setduelspawn:
+       description: sets a duel spawn
+       usage: /setduelspawn [1 or 2]
+       permission: duel.admin
+
+permissions:
+    duel.all:
+        description: gives access to all duels commands.
+        default: op
+        children:
+            duel.admin: true
+            duel.moderator: true
+            duel.user: true
+            
+    duel.admin:
+        description: gives access to commands which turn on and off aspects of the plugin
+        default: op
+        children:
+            duel.moderator: true
+            duel.user: true
+            
+    duel.moderator:
+        description: gives access to moderation commands regarding elo
+        default: op
+        children:
+            duel.user: true
+        
+    duel.user:
+        description: default commands for every user
+        default: false
